@@ -1,291 +1,121 @@
-# **Mernchat – Secure, End-to-End Encrypted (E2EE) Real-Time Messaging** 🗨️  
+## chat-e2ee
+**Disposable chat session**: this app will allow two mutually agreed users to have a chat in _end-to-end_ encrypted environment. The app itself doesn't track you or ask for any information from you. Data is owned by **only you** and **only while chatting**. Your private key is generated on your device and never leaves your device. This is not a replacement for your usual chat application.  
 
-**[Mernchat](https://mernchat.in)** is a **secure, real-time messaging platform** built with **Next.js 15, Socket.IO, and end-to-end encryption (E2EE)** to ensure **privacy-first communication**. Designed for seamless **group chats, reactions, file sharing, and OAuth login**, this app is the perfect solution for **secure online conversations**.
+The project is still in **development** phase and open for contribution.  
+Demo: https://chat-e2ee-2.azurewebsites.net  
 
-
-![Next.js-chat-app Screenshot](next-js-frontend/public/images/og/og-image.png)
-![Next.js-chat-app Screenshot](next-js-frontend/public/images/dekstop-screenshots/group-chat-creation.png)  
-![Next.js-chat-app Screenshot](next-js-frontend/public/images/dekstop-screenshots/recent-calls.png)
-![Next.js-chat-app Screenshot](next-js-frontend/public/images/dekstop-screenshots/poll-creation.png)  
-![Next.js-chat-app Screenshot](next-js-frontend/public/images/dekstop-screenshots/sending-gif.png)  
-![Next.js-chat-app Screenshot](next-js-frontend/public/images/dekstop-screenshots/uploading-attachments.png)
-
-
-<!-- ## **Responsive Design 📱**
-
-<div>
-<img style="object-fit: contain;" src="next-js-frontend/public/images/mobile-screenshots/home-screen.png"/>
-<img style="object-fit: contain;" src="next-js-frontend/public/images/mobile-screenshots/call-history.png"/>
-<img style="object-fit: contain;" src="next-js-frontend/public/images/mobile-screenshots/incoming-call.png"/>
-<img style="object-fit: contain;" src="next-js-frontend/public/images/mobile-screenshots/ongoing-call.png"/>
-<img style="object-fit: contain;" src="next-js-frontend/public/images/mobile-screenshots/chat-view.png"/>
-<img style="object-fit: contain;" src="next-js-frontend/public/images/mobile-screenshots/reaction-and-unsend-feature.png"/>
-<img style="object-fit: contain;" src="next-js-frontend/public/images/mobile-screenshots/add-caption-on-photo.png"/>
-<img style="object-fit: contain;" src="next-js-frontend/public/images/mobile-screenshots/chat-details.png"/>
-</div>
-
-
---- -->
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/muke1908/chat-e2ee)
 
 ---
-## **🚀 Features**  
+  
 
-### 💬 **Chat & Messaging**  
-- **Real-time Messaging** – Instantly send and receive messages.  
-- **Voice Notes** – Record and send encrypted voice messages in private chats (not encrypted in group chats). 
-- **Typing Indicators** – See when someone is typing (supports multiple users typing simultaneously in group chats).
-- **Message Editing** – Edit messages after sending (with an edit indicator).  
-- **Message Reactions** – React to messages with emojis (double-tap to like/unlike).  
-- **Message Deletion** – Delete messages after sending.  
-- **Message Replies** – Reply to specific messages in a chat, whether sent by you or others.
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=muke1908_chat-e2ee&metric=code_smells)](https://sonarcloud.io/project/issues?id=muke1908_chat-e2ee&resolved=false&types=CODE_SMELL)  [![](https://img.shields.io/github/issues/muke1908/chat-e2ee?style=flat)](https://github.com/muke1908/chat-e2ee/issues) 
 
+## Features
 
-### 📞 **Audio & Video Calling**
-- **Peer-to-Peer Calls** – High-quality, voice and video calls (powered by Webrtc).
-- **Call History** – View and manage past call logs.
+1. :negative_squared_cross_mark: No login/signup - the end users **don't identify** themselves.
+2. :closed_lock_with_key:	End-to-end encrypted Audio-Call  (Experimental - added on [19th September, 2024](https://github.com/muke1908/chat-e2ee/commit/efae545c4c378dd7cae3c133843c1d58fded8a56)).  
+:warning: Note that Audio encryption in webrtc call is done diffrently, please refer [Wiki](https://github.com/muke1908/chat-e2ee/wiki/End%E2%80%90to%E2%80%90end-encryption-in-Webrtc-audio-call). It internally uses RTCRtpSender API: `createEncodedStreams` that has [limited Support](https://caniuse.com/mdn-api_rtcrtpsender_createencodedstreams)
+4. :no_entry_sign: Data is **not** stored on any remote server, encrypted data is just relayed to other users, the data can't be decrypted by any man in the middle. **No history** i.e. once chat is closed the data is not recoverable, however encrypted data can be found on memory trace. [Read More](https://github.com/muke1908/chat-e2ee/wiki/How-and-when-your-data-can-be-compromised%3F)  
 
-### 📢 **Notifications & Presence**  
-- **Push Notifications** – Stay updated with real-time alerts (powered by Firebase).  
-- **User Presence** – See who’s online in real time.
+## :star: JS SDK 
+[<img align="center" width="200" src="https://i.imgur.com/O3Wr6fK.png">](https://github.com/muke1908/chat-e2ee/tree/master/service)  
 
-### 🤝 **Social Features**  
-- **Friends System** – Add friends and chat with them.  
-- **Group Chats** – Create and participate in group conversations.  
-- **Polling** – Create polls with single/multiple voting options.  
+**Spin up your own frontend**: 
+JS SDK and use chat-e2ee backend as service - `@chate2ee/service`  
+[ :page_with_curl: Documentation](https://github.com/muke1908/chat-e2ee/tree/master/service)
 
-### 📁 **Media & File Sharing**  
-- **GIF Support** – Send animated GIFs (powered by Tenor).  
-- **File Sharing** – Send and receive files securely.  
+This is a client-side SDK to interact with chat-e2ee service. It allows dev to build own chat client on top of chate2ee service. It uses socket.io for websocket connection and webrtc to facilitate 1-1 audio call.   
 
-### 🔒 **Privacy & Security**  
-- **End-to-End Encryption (E2EE)** – Secure messages with advanced encryption.  
-- **Private Key Recovery** – Retrieve your encryption key with MFA-protected email verification.  
-
-### 🛠️ **Other Features**  
-- **OAuth Integration** – Sign in with Google & GitHub.  
-- **PWA Support** – Install next-js-chat-app as a Progressive Web App for a native-like experience.  
 
 ---
 
-## 🔐 Privacy & Encryption Commitment  
+For installation instruction, go to [developer section](https://github.com/muke1908/chat-e2ee#computer-for-developers).  
 
-At this project [Mernchat](https://mernchat.in), i have taken **privacy and security** seriously. The app is **built, designed, and structured** with user privacy in mind, ensuring that **certain messages remain completely inaccessible—even to me as a developer**.  
+### How to initiate chat
 
-### **End-to-End Encryption (E2EE)**  
-Private **one-on-one text messages and voice notes** are **end-to-end encrypted** using **AES-256-GCM + ECDH**. This means:  
+1. Generate a unique link.
+2. Share the link or PIN with the person you want to chat with.
+3. Start chatting.
+4. The messages are end-to-end encrypted; therefore, no one can decrypt your message other than you.
 
-✅ **No one—including me as the developer—can access your private chats or private voice notes.**  
-✅ **Text messages sent in private chats (between two users) and voice notes sent in private chats (between two users) are encrypted at the sender’s device and only decrypted on the recipient’s device.**  
-✅ **Even if I access the database directly, I cannot read or retrieve private messages or private voice notes in plain text/data**  
+**How the encryption works**
 
-For **full transparency**, here’s a snapshot of how private messages and private voice notes are stored in the database—fully encrypted and unreadable to anyone, including myself.  
+1. Alice and Bob generate a public and private key pair.
+2. Alice and Bob share their public keys with each other.
+3. Alice encrypts her message with Bob's public key and sends it to Bob.
+4. Bob receives the encrypted message and decrypts it with his private key.
 
-### This is how your private chat text messages that are e2ee looks like in database
-![](next-js-frontend/public/images/privacy/e2ee-messages-in-database.png)
+In this way, no one else can decrypt the message because your private key is never exposed/shared to the internet.
+More detailed explanation: https://www.youtube.com/watch?v=GSIDS_lvRv4&t=1s
 
-### This is how your private chat voice notes that are also e2ee looks like
-
-##### Here each file in this folder `encrypted-audio` represents a single e2ee voice note
-![](next-js-frontend/public/images/privacy/encrypted-audio-cloudinary-folder.png)
-##### And this is how your encrypted voice note data looks like
-![](next-js-frontend/public/images/privacy/encrypted-voice-note-data.png)
-
-### **What’s Not E2EE?**  
-While all data is stored securely, end-to-end encryption is **only applied to private text messages and private voice notes**. The following are **not** end-to-end encrypted:  
-
-❌ **Group chats**  
-❌ **Audio & video calls (powered by webrtc)**  
-❌ **Media files (images, videos, GIFs, documents, attachments, etc.)**  
-
-These features are still securely transmitted and stored, but they do not follow the same encryption standard as private messages and private voice notes.  
-
-At [Mernchat](https://mernchat.in), i am committed to transparency and security. As i continue improving, my aim is to enhance encryption features for even greater privacy in future updates.
-
-
-## **Who Can Use This Chat App?**  
-
-✔️ **Startups & Teams** – Secure & private team collaboration 🔐  
-✔️ **Developers** – Learn how to build a **real-time chat app** 👨‍💻  
-✔️ **Open-Source Enthusiasts** – Contribute & improve the project 🚀  
-✔️ **Personal Use** – Chat privately with friends & family 💬  
+> We are using browser [window.crypto library](https://developer.mozilla.org/en-US/docs/Web/API/crypto_property)  for encryption.  
 
 ---
 
-## **🛠️ Tech Stack**  
+### Flow
 
-### **Frontend**  
-- **⚛️ Next.js 15 + React 19** – Modern full-stack React framework.  
-- **🛠️ Redux Toolkit + React-Redux** – Efficient global state management.  
-- **🔗 React Hook Form + Zod** – Form handling & schema validation.  
-- **🔄 Socket.IO Client** – Real-time communication.  
-- **📅 Date-fns** – Date & time utilities.  
-- **🎥 Framer Motion + Lottie-React** – Animations & dynamic UI effects.  
-- **🔥 Firebase** – Push notifications & backend integration.  
-- **💅 Tailwind CSS** – Responsive & scalable UI.  
-- **🚀 Nodemailer** – Email handling.  
-- **🔐 bcryptjs + jose** – Authentication & encryption.  
-- **💬 Emoji-Picker-React + Gif-Picker-React** – Interactive media in chat.  
-- **🛠️ Prisma ORM** – Database management.  
-
-### **Backend**  
-- **🟢 Node.js + Express** – Scalable backend API.  
-- **🔄 Socket.IO** – Real-time bidirectional communication.  
-- **🗄️ Prisma ORM** – Type-safe database management.  
-- **🔐 JWT Authentication (jsonwebtoken)** – Secure authentication.  
-- **☁️ Cloudinary** – Cloud storage for images & files.  
-- **📧 Nodemailer** – Email notifications & MFA verification.  
-- **🔑 Passport.js + Google OAuth** – OAuth-based authentication.  
-- **🔥 Firebase Admin SDK** – Push notifications.  
-- **🛡️ Helmet** – Security headers for protection.  
-- **📝 Morgan** – HTTP request logging.  
-- **🍪 Cookie-Parser** – Secure cookie handling.  
-- **🛠️ Multer** – File uploads.  
-- **🔄 CORS** – Cross-origin requests.  
-- **🛠️ UUID** – Unique ID generation.  
-- **⚙️ dotenv** – Environment variable management.  
+![flow](https://i.imgur.com/2GrBQMz.jpg)
 
 ---
 
-## **🚀 Getting Started**  
+### :computer:	 For developers
+![Open Source Love](https://img.shields.io/badge/Open%20Source-with%20love-CRIMSON.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/muke1908/chat-e2ee) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=muke1908_chat-e2ee&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=muke1908_chat-e2ee) [![Gitter](https://badges.gitter.im/chat-e2ee/community.svg)](https://gitter.im/chat-e2ee/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-### **1️⃣ Clone the Repository**  
-```bash
-git clone https://github.com/RishiBakshii/nextjs-chat-app
-cd nextjs-chat-app
-```
+**Frontend (UI):**  
+This project includes a light weight frontend UI - bootstrapped with [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html). The FE client is located in `./client` folder.  
 
-### **2️⃣ Set Up Environment Variables**  
+**Backend:**  
+The backend runs on express/nodejs. In production mode, express server exposes the API endpoints and serves the static frontend from `./client/build`.   
 
-#### **Backend Configuration**  
-1. Navigate to the **backend** folder.  
-2. Rename `.env.development.example` to `.env.development`.  
-3. Rename `.env.production.example` to `.env.production`.  
-4. Replace the placeholder values with actual credentials.  
-5. Create a `firebase-admin-cred.json` file inside `backend/src/` (root level of `src`). This file should contain your Firebase service account credentials required for Firebase push notifications.
-6. 📝 **Example `backend/src/firebase-admin-cred.json` file**, Paste your own cred here provided by firebase  
-```json
-{
-    "type": "service_account",
-    "project_id": "your-project-id",
-    "private_key_id": "your-private-key-id",
-    "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n",
-    "client_email": "your-client-email",
-    "client_id": "your-client-id",
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_x509_cert_url": "your-client-x509-cert-url",
-    "universe_domain": "googleapis.com"
-}
-```
----
+**JS SDK:**  
+`@chat-e2ee/service` - located in `./service` - A SDK that client uses to interact with backend. More info: [Readme](https://github.com/muke1908/chat-e2ee/tree/master/service)
 
-#### **Frontend Configuration**  
-1. Navigate to the **frontend** folder.  
-2. Rename `.env.development.example` to `.env.development`.  
-3. Rename `.env.production.example` to `.env.production`.  
-4. Replace the placeholder values with actual credentials.  
+**Custom frontend**  
+Import `@chat-e2ee/service` SDK in your client project and build your own chat client.
 
-🚨 **Important Notes:**  
-- Never expose sensitive credentials to client side by prefixing them with `NEXT_PUBLIC_`.  
-- Ensure the correct Firebase cred and API URLs are set.  
----
+### Installation
 
-### **3️⃣ Install Dependencies & Run the Application**  
+1. Fork this repository by clicking on the fork button on the top of this page. This will create a copy of this repository in your account.
+2. Now clone the forked repository to your machine. 
+3. Run `npm install` in root dir i.e. inside cloned repo.
+4. Run `npm run dev` to spin up your client/server. This will run your react app in dev mode and server in watch mode by nodemon.
 
-#### **Start the Backend First**  
-```bash
-cd backend
-npm install
-npm run dev
-```
-The backend will start at **http://localhost:8000**.  
+:exclamation::exclamation:**Important:**
+If you are making changes to `./service` i.e. `@chat-e2ee/service`, make sure you run `npm run build-service-sdk` to reflect changes.
+
+NOTE: by default, `create-react-app` runs webpack-dev-server on port `3000`. The server is configured to run on `3001` port. So, make sure that these ports are not blocked on your system.
+
+**Important:**  
+Check `.env.sample` to configure your `.env` file.  
+Please use node 16 or above.   
+
+To start with docker read the [instructions](https://github.com/muke1908/chat-e2ee/tree/master/docker).   
+For native build read the [instructions](https://github.com/muke1908/chat-e2ee/tree/master/native).
+
+### Folder structure
+
+- The FE client is located in `./client` which is coupled with the backend.
+- All the backend controllers go to `./backend` folder.
+- Client uses a package `@chate2ee/service` to communicate with the backend. Located in `./service`.  
+- Express instance is on `./app.js`.
+- Entry point is `./index.js`.
+
+
+Please follow the convention for the commit message.  
+https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
+Example:  
+`git commit -m"feat: some relevant message"`
 
 ---
 
-#### **Then Start the Frontend**  
-```bash
-cd next-js-frontend
-npm install
-npm run dev
-```
-Visit **http://localhost:3000** in your browser.
+## ✨ Contributors
+
+ <img src="https://contributors-img.web.app/image?repo=muke1908/chat-e2ee" />
 
 ---
-### **4️⃣ Database Setup & Migrations**  
+## :closed_lock_with_key:	 Cryptographic notice
+This distribution includes cryptographic software. The country in which you currently reside may have restrictions on the import, possession, use, and/or re-export to another country, of encryption software. BEFORE using any encryption software, please check your country's laws, regulations and policies concerning the import, possession, or use, and re-export of encryption software, to see if this is permitted. See http://www.wassenaar.org/ for more information.
 
-#### **Available Database Commands**  
-These scripts are defined in `package.json` under the **next-js-frontend** folder:  
-
-```json
-{
-  "db:push:dev": "dotenv -e .env.development -- npx prisma db push",
-  "db:push:prod": "dotenv -e .env.production -- npx prisma db push",
-  "migrate:dev": "dotenv -e .env.development -- npx prisma migrate deploy",
-  "migrate:prod": "dotenv -e .env.production -- npx prisma migrate deploy"
-}
-```
-
-#### **Push the Schema (Non-Migratory Approach)**  
-If you just need to sync the database schema without migrations:  
-- **Development:**  
-  ```bash
-  npm run db:push:dev
-  ```
-- **Production:**  
-  ```bash
-  npm run db:push:prod
-  ```
-
-#### **Run Migrations (For Versioned Changes)**  
-If you are making structural changes and need to apply existing migrations:  
-- **Development:**  
-  ```bash
-  npm run migrate:dev
-  ```
-- **Production:**  
-  ```bash
-  npm run migrate:prod
-  ```
-
-🚀 **Note:**  
-- `db push` is useful when setting up the database initially or for quick schema changes **without** migration tracking.  
-- `migrate deploy` ensures **existing** migrations are applied in production and development.  
-
----
-
-
-## **💡 Contribution Guide**  
-Contributions are welcome! To contribute:  
-1. **Fork** the repository.  
-2. **Create a branch**:  
-   ```bash
-   git checkout -b feature-branch
-   ```  
-3. **Commit your changes**:  
-   ```bash
-   git commit -m "Add new feature"
-   ```  
-4. **Push to GitHub**:  
-   ```bash
-   git push origin feature-branch
-   ```  
-5. **Open a Pull Request** 🚀  
-
----
-
-## **📧 Contact**  
-For feedback or queries, reach out:  
-🔗 **[LinkedIn @Rishi Bakshi](https://www.linkedin.com/in/rishi-bakshi/)**
-<br/>
-📩 **[rishibakshiofficial@gmail.com](mailto:rishibakshiofficial@gmail.com)**  
-
----
-
-![GitHub Repo stars](https://img.shields.io/github/stars/RishiBakshii/nextjs-chat-app?style=social)  
-![GitHub forks](https://img.shields.io/github/forks/RishiBakshii/nextjs-chat-app?style=social)  
-![GitHub issues](https://img.shields.io/github/issues/RishiBakshii/nextjs-chat-app)  
-![GitHub license](https://img.shields.io/github/license/RishiBakshii/nextjs-chat-app)  
-![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)  
-
----
+The U.S. Government Department of Commerce, Bureau of Industry and Security (BIS) has classified this software as Export Commodity Control Number (ECCN) 5D002.C.1, which includes information security software using or performing cryptographic functions with asymmetric algorithms. The form and manner of this distribution makes it eligible for export under the License Exception ENC Technology Software Unrestricted (TSU) exception (see the BIS Export Administration Regulations, Section 740.13) for both object code and source code.

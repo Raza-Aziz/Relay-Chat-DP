@@ -1,0 +1,141 @@
+/**
+ * Button component styles — Relay theme
+ */
+
+.btn {
+  padding: 0.65rem 1.4rem;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Variants */
+.btn--primary {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--surface-hover);
+}
+
+.btn--danger {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: var(--danger);
+  color: #ffffff;
+}
+
+/* Sizes */
+.btn--small {
+  padding: 0.4rem 0.65rem;
+  font-size: 0.75rem;
+  border-radius: 8px;
+}
+
+.btn--large {
+  padding: 1rem 1.75rem;
+  font-size: 1rem;
+  border-radius: 16px;
+}
+
+/* Circle button */
+.btn--circle {
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn--circle.btn--large {
+  width: 60px;
+  height: 60px;
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.btn--circle svg {
+  width: 22px;
+  height: 22px;
+}
+
+.btn--circle.btn--large svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* Icon button */
+.btn--icon {
+  background: none;
+  color: var(--text-muted);
+  border: none;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.btn--icon:hover:not(:disabled) {
+  color: var(--primary);
+  background: var(--surface-hover);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn--icon.btn--tiny {
+  padding: 2px;
+}
+
+.btn--icon.btn--tiny svg {
+  width: 13px;
+  height: 13px;
+}

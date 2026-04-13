@@ -1,0 +1,92 @@
+/**
+ * Call overlay styles — Relay theme
+ */
+
+.blur-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.call-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Pulsing avatar */
+.call-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--surface);
+  margin-bottom: 1rem;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 20px rgba(94, 116, 229, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.call-avatar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(94, 116, 229, 0.15), transparent 60%);
+}
+
+.shimmer {
+  animation: callPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes callPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(94, 116, 229, 0.3); }
+  50%       { box-shadow: 0 0 40px rgba(94, 116, 229, 0.5); }
+}
+
+.call-status {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.call-duration {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.75rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .call-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .call-status {
+    font-size: 1.05rem;
+  }
+
+  .call-duration {
+    margin-bottom: 1.25rem;
+  }
+}

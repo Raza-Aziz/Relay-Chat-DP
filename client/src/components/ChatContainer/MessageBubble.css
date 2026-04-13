@@ -1,0 +1,87 @@
+/**
+ * Message bubble styles — Relay theme
+ */
+
+.message {
+  max-width: 72%;
+  padding: 0.7rem 1rem;
+  border-radius: 18px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  position: relative;
+  animation: msgIn 0.25s ease-out;
+}
+
+@keyframes msgIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message.sent {
+  align-self: flex-end;
+  background: var(--primary);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+.message.received {
+  align-self: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+}
+
+/* Accent bar on received messages */
+.message.received::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.message-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.message.sent .message-text {
+  color: #ffffff;
+}
+
+.message.received .message-text {
+  color: var(--text);
+}
+
+.message-meta {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  opacity: 0.7;
+}
+
+.message.sent .message-meta {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .message {
+    max-width: 86%;
+    font-size: 0.85rem;
+  }
+}

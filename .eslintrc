@@ -1,0 +1,82 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "jest": true,
+        "browser": true,
+        "es2021": true
+    },
+    "plugins": [
+        "jest",
+        "promise",
+        "react",
+        "@typescript-eslint",
+        "prettier",
+        "standard" 
+    ],
+    "settings": {
+        "react": {
+            "version": "999.999.999"
+        }
+    },
+    "extends": [
+        "airbnb",
+        "plugin:react/recommended",
+        "plugin:jest/recommended",
+        "plugin:promise/recommended",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "react/prop-types": 0,
+        "no-nested-ternary": "off",
+        "func-names": ["error", "always"],
+        "no-plusplus": ["error", {
+            "allowForLoopAfterthoughts": true
+        }],
+        "no-unused-expressions": ["error", {
+            "allowShortCircuit": true
+        }],
+        "no-unused-vars": ["error", {
+            "args": "none"
+        }],
+        "no-param-reassign": ["error", {
+            "props": false
+        }],
+        "react/jsx-filename-extension": [1, {
+            "extensions": [".js", ".jsx"]
+        }],
+        "react/destructuring-assignment": 0,
+        "react/no-array-index-key": 0,
+        "semi": [
+            "error",
+            "always"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "never",
+                "functions": "never"
+            }
+        ],
+        "indent": "off",
+        "space-before-function-paren": ["error",
+            {
+                "anonymous": "always",
+                "named": "never",
+                "asyncArrow": "always"
+            }
+        ],
+        "no-var": "error",
+        "no-console": "warn",
+        "no-useless-constructor": "off"
+
+    }
+}
